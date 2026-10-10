@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "ssd1306.h"
+#include<stdint.h>
 #include"fonts.h"
 #include"stdio.h"
 /* USER CODE END Includes */
@@ -142,27 +143,35 @@ int main(void)
    for(i=0;i<=3;i++){
   	 if(arr[i] != brr[i]){
   		 SSD1306_Puts("Wrong!!",&Font_11x18,1);
+  		SSD1306_UpdateScreen();
   		 break; }}
    if(i>3){
   	 SSD1306_Puts("Step 2", &Font_11x18,1);
 
    SSD1306_UpdateScreen();
 
-   while (k<5)
-    {
+uint32_t tick = HAL_GetTick();
+
+   while( (HAL_GetTick ()- tick) < 3500 )
+    {HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
     if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_9) == GPIO_PIN_SET){
   	  HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5, GPIO_PIN_SET);
-  	  HAL_Delay(400);
-  	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+  	  HAL_Delay(80);
   	  k++;
     }
     }
-     if(k==5){
-    	 SSD1306_Clear();
-    	 SSD1306_GotoXY(1,12);
- 	   SSD1306_Puts("Access Granted!!", &Font_11x18,1);
+	 SSD1306_Clear();
+  	 SSD1306_GotoXY(1,12);
+     if(k==3){
+ 	   SSD1306_Puts("Access", &Font_11x18,1);
+ 	  SSD1306_GotoXY(20,35);
+ 	  	   SSD1306_Puts("Granted!!", &Font_11x18,1);
  	   SSD1306_UpdateScreen();
-     }}
+     }
+
+   else
+   { SSD1306_Puts("Fail", &Font_11x18,1);
+   SSD1306_UpdateScreen();}}
 
     while(1);
 
