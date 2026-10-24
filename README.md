@@ -8,6 +8,10 @@ Two-Step Password System Using STM32L152RE
 A two-step authentication system built with an STM32L152RE Nucleo board. The system combines a password entered through a custom 2×2 button keypad with sound-based verification using a microphone sensor.
 
 The project demonstrates GPIO-based keypad scanning, OLED display control over I²C, and a sound-event authentication method implemented with STM32 HAL and SysTick-based timing.
+##Block diagram
+
+<img width="1408" height="768" alt="block diagram" src="https://github.com/user-attachments/assets/21661597-d015-44cc-aac8-41171c0c00d4" />
+
 
 ## Features
 
@@ -65,6 +69,10 @@ The authentication process has two steps:
 - SysTick timer for clap timing measurement
 - C programming language
 
+## Circuit Diagram 
+<img width="1408" height="728" alt="ckt diagram" src="https://github.com/user-attachments/assets/c1de4765-65bf-4a22-b116-325abbb0665a" />
+
+
 ## Interface Summary
 
 | Module | STM32 Interface / Signal | Purpose |
@@ -97,14 +105,16 @@ The second verification step has been updated as follows:
 - Timing method: SysTick timer
 - Success condition: exactly 3 detected sound events within the 3-second window
 - Failure condition: any other clap count or timing window results in a failed attempt
+## Full System
+<img width="4080" height="2288" alt="fullsys" src="https://github.com/user-attachments/assets/4072d290-875e-491e-bd68-82dcafa2a2d6" />
 
-Images
+observation
 
 
 
 
 
-<img width="216" height="300" alt="img" src="https://github.com/user-attachments/assets/5a6a7129-555f-471a-8f9a-d6cf8ba59719" />
+<img width="870" height="1000" alt="img" src="https://github.com/user-attachments/assets/5a6a7129-555f-471a-8f9a-d6cf8ba59719" />
 
 
 
